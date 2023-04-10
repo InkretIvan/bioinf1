@@ -5,7 +5,7 @@ def selectSequences(path):
 
     """
 
-    tolerance=2 #Služi za podesiti količinu sekvenci koju želimo, ako je veća tolerancije teže bude ih poravnati
+    tolerance=0 #Služi za podesiti količinu sekvenci koju želimo, ako je veća tolerancije teže bude ih poravnati
 
     data=[]
     newData=[]
