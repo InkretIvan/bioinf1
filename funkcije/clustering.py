@@ -35,3 +35,4 @@ def kmeans(sequences):
         errors.append(error)
     writeJSON(results, "kmeans_results")
     saveImage(num_clusters, errors, "kmeans_results")
+    return results
