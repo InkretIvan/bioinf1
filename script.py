@@ -1,6 +1,6 @@
 from funkcije.parse import selectSequences
 from funkcije.clustering import kmeans
-from funkcije.msa import findRepresentatives
+from funkcije.select_representative import findRepresentatives
 
 def main():
     inp=input("Unesi ime datoteke iz koje izvlačimo podatke: ")
@@ -11,12 +11,11 @@ def main():
     n=2
     ###
 
-    clusterId=result[n-1].clusterId
-    error=result[n-1].error
+    clusterId=result[n-1]['clusterId']
 
-    representatives=findRepresentatives(sequences,clusterId)
+    representatives=findRepresentatives(sequences,clusterId,n)
 
-
+    
 
     
 
