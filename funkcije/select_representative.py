@@ -17,7 +17,7 @@ def findRepresentatives(sequences, clusterId,numOfClusters):
         mostOccurences = counts.most_common(1)[0]
         #print(mostOccurences[0])  # najčešća sekvenca
 
-        representative=mostOccurences[0][27:-20]
+        representative=mostOccurences[0]#[27:-20]
         #print(representative)
         representatives.append(representative)
 
