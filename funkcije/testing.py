@@ -37,6 +37,12 @@ def printMatrix(representatives):
     #dobiveni_predstavnik_2                 1.0                49.0                19.0
     #dobiveni_predstavnik_3                23.0                39.0                26.0
     #
+    #Za J29 ovo puno bolje radi, imamo 2 egzaktna glavna predstavnika
+    #
+    #                        test_predstavnik_1  test_predstavnik_2  test_predstavnik_3
+    #dobiveni_predstavnik_1                11.0                 0.0                17.0
+    #dobiveni_predstavnik_2                 1.0                12.0                21.0
+    #dobiveni_predstavnik_3                 0.0                12.0                20.0
     #
     #
 
