@@ -2,8 +2,11 @@ from Bio.Cluster import kcluster
 import numpy as np
 import json
 import matplotlib.pyplot as plt
-import Levenshtein
+#import Levenshtein
 from Bio import Align
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.cluster import KMeans
 
 aligner = Align.PairwiseAligner()
 aligner.mode = 'local'
@@ -87,3 +90,14 @@ def kmedoids(sequences):
     saveImage(num_clusters, errors, "kmedoids_results")
     return results
 
+def kmeansSklearn(sequences):
+    errors = []
+    vectorizer = CountVectorizer(analyzer='char')
+    X = vectorizer.fit_transform(sequences)
+    num_clusters = list(range(1, 11))
+    for k in num_clusters:
+        kmeans = KMeans(n_clusters=k)
+        kmeans.fit(X)
+        labels = kmeans.labels_
+        errors.append(kmeans.inertia_)
+    saveImage(num_clusters, errors, "kmeans_Sklearn_J30")
