@@ -28,8 +28,8 @@ def selectSequences(path):
             data.append(secondLine)
             dataLen.append(len(secondLine))
     
-    print("Broj zapisa prije rezanja: ")
-    print(len(data))
+    #print("Broj zapisa prije rezanja: ")
+    #print(len(data))
 
     mode = statistics.mode(dataLen) #vrijednost koja se pojavljuje najcesce
 
@@ -44,8 +44,8 @@ def selectSequences(path):
         if (len(d)>=mode-tolerance) and (len(d)<=mode+tolerance):
             newData.append(d)
     
-    print("Broj zapisa poslije rezanja: ")
-    print(len(newData))
+    #print("Broj zapisa poslije rezanja: ")
+    #print(len(newData))
 
     return newData
 

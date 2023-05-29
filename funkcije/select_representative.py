@@ -1,9 +1,11 @@
 from collections import Counter
 
-representatives=[]
-seqById=[]
+
 
 def findRepresentatives(sequences, clusterId,numOfClusters):
+
+    representatives=[]
+    seqById=[]
    
     for i in range(numOfClusters):
         seqById.append([])
@@ -13,6 +15,9 @@ def findRepresentatives(sequences, clusterId,numOfClusters):
         seqById[id].append(seq)
 
     for s in seqById: #vracam najčešću sekvencu, ne koristim msa za sad
+        #print(len(s))
+        if len(s)<10:
+            continue
         counts = Counter(s)
         mostOccurences = counts.most_common(1)[0]
         #print(mostOccurences[0])  # najčešća sekvenca
@@ -25,6 +30,9 @@ def findRepresentatives(sequences, clusterId,numOfClusters):
 
 def findRepresentativesMsa(sequences, clusterId,numOfClusters): #wip
 
+    representatives=[]
+    seqById=[]
+
     for i in range(numOfClusters):
         seqById.append([])
 
@@ -34,6 +42,7 @@ def findRepresentativesMsa(sequences, clusterId,numOfClusters): #wip
 
     for s in seqById: 
         l=len(s) #broj sekvenci u clusteru
+        print(l)
         ls=len(s[0]) #duljina sekvenci
 
         rep=""
