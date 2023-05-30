@@ -2,8 +2,13 @@ from Bio.Cluster import kcluster
 import numpy as np
 import json
 import matplotlib.pyplot as plt
-import Levenshtein
+#import Levenshtein
 from Bio import Align
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.cluster import KMeans
+
+from sklearn.mixture import GaussianMixture
 
 aligner = Align.PairwiseAligner()
 aligner.mode = 'local'
@@ -87,3 +92,44 @@ def kmedoids(sequences):
     saveImage(num_clusters, errors, "kmedoids_results")
     return results
 
+def kmeansSklearn(sequences):
+    errors = []
+    results = []
+    vectorizer = CountVectorizer(analyzer='char')
+    X = vectorizer.fit_transform(sequences)
+    num_clusters = list(range(1, 11))
+    for k in num_clusters:
+        kmeans = KMeans(n_clusters=k)
+        kmeans.fit(X)
+        result = {
+            "nClusters" : k,
+            "error": kmeans.inertia_,
+            "clusterId": kmeans.labels_.tolist(),
+        }
+        errors.append(kmeans.inertia_)
+        results.append(result)
+    writeJSON(results, "kmeans_sklearn_result")
+    saveImage(num_clusters, errors, "kmeans_Sklearn_J30")
+    return results
+
+def gaussianMixture(sequences):
+    errors = []
+    results = []
+    num_clusters = list(range(1, 11))
+    vectorizer = CountVectorizer(analyzer='char')
+    X = vectorizer.fit_transform(sequences)
+    for k in num_clusters:
+        gmm = GaussianMixture(n_components=3)  # Set the desired number of clusters
+        gmm.fit(X.toarray())
+        labels = gmm.predict(X.toarray())
+        error = np.sum(labels != labels[0]) / len(labels) 
+        result = {
+            "nClusters" : k,
+            "error": error,
+            "clusterId": labels.tolist(),
+        }
+        errors.append(error)
+        results.append(result)
+    writeJSON(results, "gaussian_mixture_result")
+    saveImage(num_clusters, errors, "gaussian_mixture_J30")
+    return results

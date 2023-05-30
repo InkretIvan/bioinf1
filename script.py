@@ -7,6 +7,8 @@ from funkcije.tree import clus
 from funkcije.testing import printMatrix
 from funkcije.select_representative import findRepresentatives, findRepresentativesMsa
 
+from funkcije.count_representatives import count_representatives
+
 def writeJSON(results, fileName):
     with open(fileName + ".json", "w") as outfile:
         json.dump(results, outfile)
@@ -56,6 +58,8 @@ def main():
     #representatives=findRepresentativesMsa(sequences,clusterId,n) #ovo radi gore za kmeans
 
     printMatrix(representatives)
+    
+    count_representatives("./project_results.json")
 
 
 main()
