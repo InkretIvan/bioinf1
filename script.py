@@ -22,7 +22,7 @@ def getResults():
         n=6
         clusterId=result[n-1]['clusterId']
         representatives=findRepresentatives(sequences,clusterId,n)
-        print(len(representatives))
+        #print(len(representatives))
         result={
             "fileName": file,
             "numClusters": len(representatives),
