@@ -5,7 +5,7 @@ from funkcije.parse import selectSequences
 from funkcije.clustering import kmeans
 from funkcije.select_representative import findRepresentatives
 from funkcije.count_representatives import count_representatives
-from funkcije.helpers import writeJSON
+from funkcije.helpers import writeJSON, saveRepresentativesToFastq
 
 
 def getResults():
@@ -31,13 +31,13 @@ def getResults():
         n = 6
         clusterId = result[n-1]['clusterId']
         representatives = findRepresentatives(sequences, clusterId, n)
-        print(len(representatives))
         result = {
             "fileName": file,
             "numClusters": len(representatives),
             "representatives": representatives,
         }
         results.append(result)
+        saveRepresentativesToFastq(representatives,filename)
         print(file+" done")
 
     writeJSON(results, "results/project_results")

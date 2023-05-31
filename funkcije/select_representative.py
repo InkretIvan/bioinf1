@@ -22,7 +22,7 @@ def findRepresentatives(sequences, clusterId, numOfClusters):
         seqById[id].append(seq)
 
     for s in seqById:
-        if len(s) < 10:
+        if len(s) < 25:
             continue
         counts = Counter(s)
         mostOccurences = counts.most_common(1)[0]

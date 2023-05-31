@@ -1,6 +1,9 @@
 import numpy as np
 import json
 import matplotlib.pyplot as plt
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio import SeqIO
 
 
 def transformData(sequences):
@@ -75,3 +78,20 @@ def saveImage(x, y, fileName):
     plt.ylabel("Error")
     plt.grid()
     plt.savefig(fileName + ".png")
+
+def saveRepresentativesToFastq(representatives, filename):
+    """
+    Saves all generated sequence representatives of a given sample to a fastq file
+
+    Author:
+    Ivan Inkret
+    """
+    if representatives:
+        seq_records = []
+        for i,seq in enumerate(representatives):
+            seq_obj = Seq(seq)
+            seq_record = SeqRecord(seq_obj, id=""+str(i+1), description="representative_"+str(i+1))
+            seq_records.append(seq_record)
+        output = "results/representatives/"+filename+"_representatives.fasta"
+        with open(output, "w") as f:
+            SeqIO.write(seq_records, f, "fasta")
