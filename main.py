@@ -1,6 +1,5 @@
 import os
 import sys
-import json
 from funkcije.parse import selectSequences
 from funkcije.clustering import kmeans
 from funkcije.select_representative import findRepresentatives
@@ -64,3 +63,4 @@ if __name__ == "__main__":
         representatives = findRepresentatives(sequences, clusterId, n)
 
     count_representatives("./results/project_results.json")
+  
